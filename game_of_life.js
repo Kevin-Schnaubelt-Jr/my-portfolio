@@ -1,7 +1,10 @@
 const CELL_SIZE = 10;
-let COLUMNS = Math.floor(window.innerWidth / CELL_SIZE);
-let ROWS = Math.floor(window.innerHeight / CELL_SIZE);
+const initialColumns = Math.floor(window.innerWidth / CELL_SIZE);
+const initialRows = Math.floor(window.innerHeight / CELL_SIZE);
 
+let COLUMNS = initialColumns;
+let ROWS = initialRows;
+let mouseGenerating = true;
 let grid;
 
 function setup() {
@@ -10,6 +13,9 @@ function setup() {
   frameRate(10);
   grid = createEmptyGrid();
   randomizeGrid(grid);
+
+  // Add the event listener for the 'resize' event
+  window.addEventListener('resize', handleResize);
 }
 
 function draw() {
@@ -27,10 +33,41 @@ function draw() {
   grid = nextGeneration(grid);
 }
 
-function createEmptyGrid(columns = COLUMNS, rows = ROWS) {
-  return new Array(columns).fill(null).map(() => new Array(rows).fill(false));
+function createEmptyGrid(columns, rows) {
+  return new Array(columns || COLUMNS).fill(null).map(() => new Array(rows || ROWS).fill(false));
 }
 
+function handleResize() {
+  resizeCanvas(window.innerWidth, window.innerHeight * 1.15);
+  const newColumns = Math.floor(window.innerWidth / CELL_SIZE);
+  const newRows = Math.floor(window.innerHeight / CELL_SIZE);
+
+  const newGrid = createEmptyGrid(newColumns, newRows);
+
+  for (let x = 0; x < Math.min(COLUMNS, newColumns); x++) {
+    for (let y = 0; y < Math.min(ROWS, newRows); y++) {
+      newGrid[x][y] = grid[x][y];
+    }
+  }
+
+  grid = newGrid;
+  COLUMNS = newColumns;
+  ROWS = newRows;
+}
+
+function mouseClicked() {
+  mouseGenerating = !mouseGenerating;
+}
+
+function mouseMoved() {
+  if (mouseGenerating) {
+    const x = Math.floor(mouseX / CELL_SIZE);
+    const y = Math.floor(mouseY / CELL_SIZE);
+    if (x >= 0 && x < COLUMNS && y >= 0 && y < ROWS) {
+      grid[x][y] = true;
+    }
+  }
+}
 
 function randomizeGrid(grid) {
   for (let x = 0; x < COLUMNS; x++) {
@@ -73,22 +110,4 @@ function countAliveNeighbors(grid, x, y) {
   }
 
   return count;
-}
-
-function windowResized() {
-  resizeCanvas(window.innerWidth * 1.5, window.innerHeight * 1.5);
-  const newColumns = Math.floor(window.innerWidth / CELL_SIZE);
-  const newRows = Math.floor(window.innerHeight / CELL_SIZE);
-
-  const newGrid = createEmptyGrid(newColumns, newRows);
-
-  for (let x = 0; x < Math.min(COLUMNS, newColumns); x++) {
-    for (let y = 0; y < Math.min(ROWS, newRows); y++) {
-      newGrid[x][y] = grid[x][y];
-    }
-  }
-
-  grid = newGrid;
-  COLUMNS = newColumns;
-  ROWS = newRows;
 }
