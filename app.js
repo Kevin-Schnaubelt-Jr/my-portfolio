@@ -27,7 +27,9 @@ const app = new Vue({
     ]
   },
   mounted() {
-    gsap.from('h1', { duration: 1, y: -50, opacity: 0, ease: 'back.out(1.7)' });
-    gsap.from('.project', { duration: 1, y: 50, opacity: 0, stagger: 0.3, ease: 'back.out(1.7)' });
+    // function startGreenSockAnimation() {
+    //   gsap.from('h1', { duration: 1, y: -50, opacity: 0, ease: 'back.out(1.7)' });
+    //   gsap.from('.project', { duration: 1, y: 50, opacity: 0, stagger: 0.3, ease: 'back.out(1.7)' });
+    // }
   }
 });
