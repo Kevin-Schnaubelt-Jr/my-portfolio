@@ -1,0 +1,87 @@
+body {
+  font-family: 'Montserrat', sans-serif;
+  color: #1e90ff;
+  font-size: 18px;
+  line-height: 1.5;
+}
+.title{
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 20px;
+    border-radius: 8px;
+    /* this needs to be contained */
+    border: 1px solid #1e90ff;
+    margin: 20px;
+    text-align: center;
+    /* the width needs to be the size of the divs below it */
+    width: 40rem;
+
+
+}
+
+.title-div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+    position: relative;
+}
+
+h1, h2 {
+  font-weight: 700;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+h1 {
+  text-align: center;
+  padding: 50px 0;
+}
+
+.project {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+  position: relative;
+  
+}
+
+.project img {
+  width: 300px;
+  height: 200px;
+  object-fit: cover;
+  margin-right: 20px;
+
+
+}
+
+.project .project-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 20px;
+  border-radius: 8px;
+  /* This needs a rounded border */
+    border: 1px solid #1e90ff;
+
+  
+}
+
+.project h2 {
+  margin: 20px 0;
+}
+
+.project p {
+  text-align: center;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.background-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
