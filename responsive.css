@@ -1,4 +1,12 @@
 /* responsive.css */
+/* Debugging CSS */
+/* * {
+    outline: 1px solid rgba(255, 0, 0, 0.3);
+  }
+  
+  *:hover {
+    outline-color: rgba(0, 255, 0, 0.6);
+  } */
 
 /* Mobile and Tablet */
 @media screen and (max-width: 1024px) {
@@ -38,7 +46,7 @@
       }
   
     .project .project-info {
-      width: 20rem;
+      width: 15rem;
       height: auto;
     }
   
