@@ -5,7 +5,7 @@ const ROWS = Math.floor(window.innerHeight / CELL_SIZE);
 let grid;
 
 function setup() {
-    const canvas = createCanvas(window.innerWidth, window.innerHeight * 1.5);
+    const canvas = createCanvas(window.innerWidth, window.innerHeight * 1.15);
     canvas.addClass('background-canvas');
     frameRate(10);
     grid = createEmptyGrid();
