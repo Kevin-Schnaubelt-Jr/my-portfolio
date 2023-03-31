@@ -5,21 +5,24 @@ const app = new Vue({
     projects: [
       {
         id: 1,
-        title: 'Project 1',
-        description: 'Project 1 description goes here...',
-        image: 'kingoftown.PNG'
+        title: 'Linked Merch',
+        description: "Buy something, customize a QR code for it, then design it's path! (In progress)",
+        image: 'linkmerchsplash.png',
+        link: 'https://www.google.com'
       },
       {
         id: 2,
-        title: 'Project 2',
-        description: 'Project 2 description goes here...',
-        image: 'jonathan_holmes.jpg'
+        title: 'Trivia Blaster!',
+        description: 'Play a 10 round game of trivia using the Open Trivia Database API! ',
+        image: 'trivia blaster.png',
+        link: 'https://www.google.com'
       },
       {
         id: 3,
-        title: 'Project 3',
-        description: 'Project 3 description goes here...',
-        image: 'clonewars.jpg'
+        title: 'TCL Financial Aid Calculator',
+        description: 'Created for my colleges financial aid office. Calculates tuition assistance and grants.',
+        image: 'FinancialAidCalc port.png',
+        link: 'https://www.google.com'
       }
     ]
   },
