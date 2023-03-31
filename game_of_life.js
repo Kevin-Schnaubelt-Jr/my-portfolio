@@ -1,35 +1,36 @@
 const CELL_SIZE = 10;
-const COLUMNS = Math.floor(window.innerWidth / CELL_SIZE);
-const ROWS = Math.floor(window.innerHeight / CELL_SIZE);
+let COLUMNS = Math.floor(window.innerWidth / CELL_SIZE);
+let ROWS = Math.floor(window.innerHeight / CELL_SIZE);
 
 let grid;
 
 function setup() {
-    const canvas = createCanvas(window.innerWidth, window.innerHeight * 1.15);
-    canvas.addClass('background-canvas');
-    frameRate(10);
-    grid = createEmptyGrid();
-    randomizeGrid(grid);
-  }
+  const canvas = createCanvas(window.innerWidth, window.innerHeight * 1.15);
+  canvas.addClass('background-canvas');
+  frameRate(10);
+  grid = createEmptyGrid();
+  randomizeGrid(grid);
+}
 
-  function draw() {
-    background(0);
-  
-    for (let x = 0; x < COLUMNS; x++) {
-      for (let y = 0; y < ROWS; y++) {
-        if (grid[x][y]) {
-          fill(255);
-          rect(x * CELL_SIZE, y * CELL_SIZE, CELL_SIZE, CELL_SIZE);
-        }
+function draw() {
+  background(0);
+
+  for (let x = 0; x < COLUMNS; x++) {
+    for (let y = 0; y < ROWS; y++) {
+      if (grid[x][y]) {
+        fill(255);
+        rect(x * CELL_SIZE, y * CELL_SIZE, CELL_SIZE, CELL_SIZE);
       }
     }
-  
-    grid = nextGeneration(grid);
   }
 
-function createEmptyGrid() {
-  return new Array(COLUMNS).fill(null).map(() => new Array(ROWS).fill(false));
+  grid = nextGeneration(grid);
 }
+
+function createEmptyGrid(columns = COLUMNS, rows = ROWS) {
+  return new Array(columns).fill(null).map(() => new Array(rows).fill(false));
+}
+
 
 function randomizeGrid(grid) {
   for (let x = 0; x < COLUMNS; x++) {
@@ -72,4 +73,22 @@ function countAliveNeighbors(grid, x, y) {
   }
 
   return count;
+}
+
+function windowResized() {
+  resizeCanvas(window.innerWidth * 1.5, window.innerHeight * 1.5);
+  const newColumns = Math.floor(window.innerWidth / CELL_SIZE);
+  const newRows = Math.floor(window.innerHeight / CELL_SIZE);
+
+  const newGrid = createEmptyGrid(newColumns, newRows);
+
+  for (let x = 0; x < Math.min(COLUMNS, newColumns); x++) {
+    for (let y = 0; y < Math.min(ROWS, newRows); y++) {
+      newGrid[x][y] = grid[x][y];
+    }
+  }
+
+  grid = newGrid;
+  COLUMNS = newColumns;
+  ROWS = newRows;
 }
