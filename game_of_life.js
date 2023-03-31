@@ -55,9 +55,7 @@ function handleResize() {
   ROWS = newRows;
 }
 
-function mouseClicked() {
-  mouseGenerating = !mouseGenerating;
-}
+
 
 function mouseMoved() {
   if (mouseGenerating) {
