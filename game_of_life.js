@@ -55,6 +55,44 @@ function handleResize() {
   ROWS = newRows;
 }
 
+function createGlider(x, y) {
+  const column = Math.floor(x / CELL_SIZE);
+  const row = Math.floor(y / CELL_SIZE);
+
+  const gliderPatterns = [
+    [
+      [1, 0, 0],
+      [0, 1, 1],
+      [1, 1, 0],
+    ],
+    [
+      [0, 1, 0],
+      [0, 0, 1],
+      [1, 1, 1],
+    ],
+    [
+      [0, 1, 1],
+      [1, 1, 0],
+      [0, 0, 1],
+    ],
+    [
+      [1, 1, 1],
+      [1, 0, 0],
+      [0, 1, 0],
+    ],
+  ];
+
+  const gliderPattern = gliderPatterns[Math.floor(Math.random() * gliderPatterns.length)];
+
+  for (let i = 0; i < gliderPattern.length; i++) {
+    for (let j = 0; j < gliderPattern[i].length; j++) {
+      const newColumn = (column + i) % COLUMNS;
+      const newRow = (row + j) % ROWS;
+      grid[newColumn][newRow] = gliderPattern[i][j] === 1;
+    }
+  }
+}
+
 
 
 function mouseMoved() {
@@ -66,6 +104,9 @@ function mouseMoved() {
     }
   }
 }
+
+function mouseClicked() {
+  createGlider(mouseX, mouseY);}
 
 function randomizeGrid(grid) {
   for (let x = 0; x < COLUMNS; x++) {
