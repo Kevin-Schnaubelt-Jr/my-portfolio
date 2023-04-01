@@ -1,7 +1,7 @@
 const app = new Vue({
   el: '#app',
   data: {
-    title: 'Kevin Schnaubelt',
+    title: 'Kevin Schnaubelt\nSoftware Developer',
     projects: [
       {
         id: 1,
